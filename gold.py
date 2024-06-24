@@ -12,3 +12,10 @@ def get_gold_API(start_date, end_date):
         print(f"Yêu cầu không thành công. Mã trạng thái: {response.status_code}")
         return None
 
+# Hàm để lấy giá trị cuối cùng cho mỗi ngày
+def get_latest_data(data):
+    latest_data = {}
+    for entry in data:
+        date_str = entry['date'].split()[0]  # Lấy phần ngày từ chuỗi 'date'
+        latest_data[date_str] = entry  # Ghi đè giá trị, chỉ giữ lại giá trị cuối cùng
+    return list(latest_data.values())
